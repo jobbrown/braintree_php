@@ -39,9 +39,13 @@ class ResourceCollection implements Iterator
      * @param array $response
      * @param array $pager
      */
-    public function  __construct($response, $pager)
+    public function  __construct($response, $pager, $pageSize = 0)
     {
-        $this->_pageSize = $response["searchResults"]["pageSize"];
+        if($pageSize == 0) {
+            $pageSize = $response["searchResults"]["pageSize"];
+        }
+        
+        $this->_pageSize = $pageSize;
         $this->_ids = $response["searchResults"]["ids"];
         $this->_pager = $pager;
     }

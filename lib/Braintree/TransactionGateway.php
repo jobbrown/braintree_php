@@ -324,7 +324,7 @@ class TransactionGateway
                 'methodArgs' => [$query]
                 ];
 
-            return new ResourceCollection($response, $pager);
+            return new ResourceCollection($response, $pager, 2000);
         } else {
             throw new Exception\DownForMaintenance();
         }

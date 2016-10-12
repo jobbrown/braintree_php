@@ -308,7 +308,7 @@ class TransactionGateway
      * @return ResourceCollection
      * @throws InvalidArgumentException
      */
-    public function search($query)
+    public function search($query, $transactionLimit = 0)
     {
         $criteria = [];
         foreach ($query as $term) {
@@ -324,7 +324,7 @@ class TransactionGateway
                 'methodArgs' => [$query]
                 ];
 
-            return new ResourceCollection($response, $pager, 2000);
+            return new ResourceCollection($response, $pager, $transactionLimit);
         } else {
             throw new Exception\DownForMaintenance();
         }
